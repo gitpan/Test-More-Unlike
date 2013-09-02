@@ -4,7 +4,7 @@ use Test::More;
 use Test::More::Unlike;
 
 if ($ENV{AUTHOR_TEST}) {
-    Test::More::unlike 'abcdef', qr/cd/;
+    unlike 'abcdef', qr/cd/;
 }
 
 ok 1;

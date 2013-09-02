@@ -1,22 +1,29 @@
 package Test::More::Unlike;
 use strict;
 use warnings;
-
-our $VERSION = '0.01';
-
-package # hide from PAUSE
-    Test::More;
-use strict;
+use Test::More qw//;
 use Text::MatchedPosition;
-no warnings 'redefine';
 
-sub unlike ($$;$) { ## no critic (Subroutines::ProhibitSubroutinePrototypes)
+our $VERSION = '0.02';
+
+sub import {
+    my $class   = shift;
+    my $package = caller(0);
+
+    {
+        no strict 'refs'; ## no critic
+        no warnings 'redefine';
+        *{"$package\::unlike"} = \&{ __PACKAGE__ . '::_unlike' };
+    }
+}
+
+sub _unlike ($$;$) { ## no critic (Subroutines::ProhibitSubroutinePrototypes)
     my $tb = Test::More->builder;
     my $ret = $tb->unlike(@_);
     return $ret if $ret eq '1';
 
     my $pos = Text::MatchedPosition->new(@_);
-    return diag( sprintf <<'DIAGNOSTIC', $pos->line, $pos->offset );
+    return $tb->diag( sprintf <<'DIAGNOSTIC', $pos->line, $pos->offset );
           matched at line: %d, offset: %d
 DIAGNOSTIC
 }
@@ -52,6 +59,21 @@ When C<unlike> test fails, if you have used Test::More::Unlike, then the error d
     #           matched at line: 1, offset: 3
 
 NOTE that it is only first matched position. And offset count is calculated as octet.
+
+NOTE that below code does NOT work as expected(It works, but Not show a count of line and offset).
+
+    use Test::More::Unlike;
+    use Test::More;
+    
+    unlike 'abcdef', qr/cd/;
+    
+    done_testing;
+
+C<Test::More> should be loaded before C<Test::More::Unlike>.
+
+    # This is OK.
+    use Test::More;
+    use Test::More::Unlike;
 
 
 =head1 REPOSITORY

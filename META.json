@@ -37,7 +37,7 @@
    "provides" : {
       "Test::More::Unlike" : {
          "file" : "lib/Test/More/Unlike.pm",
-         "version" : "0.01"
+         "version" : "0.02"
       }
    },
    "release_status" : "stable",
@@ -52,5 +52,5 @@
          "url" : "http://github.com/bayashi/Test-More-Unlike"
       }
    },
-   "version" : "0.01"
+   "version" : "0.02"
 }

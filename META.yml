@@ -16,7 +16,7 @@ name: Test-More-Unlike
 provides:
   Test::More::Unlike:
     file: lib/Test/More/Unlike.pm
-    version: 0.01
+    version: 0.02
 requires:
   Test::More: 0.88
   Text::MatchedPosition: 0
@@ -27,4 +27,4 @@ resources:
   bugtracker: http://github.com/bayashi/Test-More-Unlike/issues
   license: http://dev.perl.org/licenses/
   repository: http://github.com/bayashi/Test-More-Unlike
-version: 0.01
+version: 0.02
