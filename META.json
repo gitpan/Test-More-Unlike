@@ -27,7 +27,7 @@
       "runtime" : {
          "requires" : {
             "Test::More" : "0.88",
-            "Text::MatchedPosition" : "0",
+            "Text::MatchedPosition" : "0.03",
             "perl" : "5.008001",
             "strict" : "0",
             "warnings" : "0"
@@ -37,7 +37,7 @@
    "provides" : {
       "Test::More::Unlike" : {
          "file" : "lib/Test/More/Unlike.pm",
-         "version" : "0.02"
+         "version" : "0.03"
       }
    },
    "release_status" : "stable",
@@ -52,5 +52,5 @@
          "url" : "http://github.com/bayashi/Test-More-Unlike"
       }
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }
